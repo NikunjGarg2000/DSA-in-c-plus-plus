@@ -4,6 +4,7 @@
         "climits": "cpp",
         "bitset": "cpp",
         "string_view": "cpp",
-        "functional": "cpp"
+        "functional": "cpp",
+        "array": "cpp"
     }
 }
