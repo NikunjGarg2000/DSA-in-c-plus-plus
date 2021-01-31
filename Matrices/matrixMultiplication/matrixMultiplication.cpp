@@ -1,3 +1,5 @@
+// Given two matrices, multiply them 
+
 #include <iostream>
 using namespace std;
 
@@ -34,7 +36,8 @@ int main()
         }
     }
 
-    // multiply
+    // Multiplying matrices
+    // time complexity is O(n1 * n2 * n3)
     for (int i = 0; i < n1; i++)
     {
         for (int j = 0; j < n3; j++)

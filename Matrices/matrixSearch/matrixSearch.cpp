@@ -1,3 +1,5 @@
+// Given a matrix and a key, find out if that matrix have that key
+
 #include <iostream>
 using namespace std;
 
@@ -16,7 +18,9 @@ int main()
         }
     }
 
-    // // Brute Force Approach
+    // Brute Force Approach
+    // time complexity is O(n*m)
+
     // bool found = false;
     // for (int i = 0; i < n; i++)
     // {
@@ -39,8 +43,10 @@ int main()
     //     cout << "Element not found!" << endl;
     // }
 
+
     // More Efficient Approach
     // Only if all rows and columns are sorted in asc order
+    // time complexity is O(n + m)
 
     int r = 0, c = m - 1;
     bool found = false;

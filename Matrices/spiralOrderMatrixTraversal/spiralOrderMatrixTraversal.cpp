@@ -1,3 +1,12 @@
+// Given a matrix, print it in spiral order
+
+// eg
+// Input:  1    2   3   4
+//         5    6   7   8
+//         9   10  11  12
+//         13  14  15  16
+// Output: 1 2 3 4 8 12 16 15 14 13 9 5 6 7 11 10
+
 #include <iostream>
 using namespace std;
 
@@ -16,6 +25,8 @@ int main()
             cin >> array[i][j];
         }
     }
+
+    // time complexity is O(m*n)
 
     int row_start = 0, row_end = n - 1, column_start = 0, column_end = m - 1;
 
