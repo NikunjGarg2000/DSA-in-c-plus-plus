@@ -1,12 +1,19 @@
+// Convert string into uppercase or lowercase
+
 #include <iostream>
-#include<string>
-#include<algorithm>
+#include <string>
+#include <algorithm>
 using namespace std;
 
 int main()
 {
 
     string s = "aybAjhKOdfudw";
+
+    // time complexity is O(n) where n is the size of string
+
+    // using STL
+    // use #include <algorithm> to use it
 
     // Upper case
     transform(s.begin(), s.end(), s.begin(), ::toupper);
@@ -18,25 +25,27 @@ int main()
 
     cout << s << endl;
 
-    // // Upper case
-    // for (int i = 0; i < s.length(); i++)
-    // {
-    //     if (s[i] >= 'a' && s[i] <= 'z')
-    //     {
-    //         s[i] -= 32;
-    //     }
-    // }
+    // doing by ourself
+    
+    // Upper case
+    for (int i = 0; i < s.length(); i++)
+    {
+        if (s[i] >= 'a' && s[i] <= 'z')
+        {
+            s[i] -= 32;
+        }
+    }
 
-    // cout << s << endl;
+    cout << s << endl;
 
-    // // Lower case
-    // for (int i = 0; i < s.size(); i++)
-    // {
-    //     if (s[i] >= 'A' && s[i] <= 'Z')
-    //     {
-    //         s[i] += 32;
-    //     }
-    // }
+    // Lower case
+    for (int i = 0; i < s.size(); i++)
+    {
+        if (s[i] >= 'A' && s[i] <= 'Z')
+        {
+            s[i] += 32;
+        }
+    }
 
     cout << s << endl;
 

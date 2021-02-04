@@ -1,30 +1,38 @@
-#include<iostream>
+// Find maximum occuring character in the string
+
+#include <iostream>
 using namespace std;
 
-int main() {
+int main()
+{
 
     string s = "abdhkabcgsjaabbsca";
 
     int freq[26];
-    for (int i = 0 ; i < 26; i++) {
+    for (int i = 0; i < 26; i++)
+    {
         freq[i] = 0;
     }
 
-    for (int i = 0; i < s.size(); i++) {
+    // time complexity is O(n) where n is the size of string
+    for (int i = 0; i < s.size(); i++)
+    {
         freq[s[i] - 'a']++;
     }
 
     int count = 0;
     char ans = 'a';
 
-    for (int i = 0; i < 26; i++) {
-        if (freq[i] > count) {
+    for (int i = 0; i < 26; i++)
+    {
+        if (freq[i] > count)
+        {
             count = freq[i];
             ans = i + 'a';
         }
     }
 
-    cout << count << " " << ans << endl;    
+    cout << count << " " << ans << endl;
 
     return 0;
 }
