@@ -66,8 +66,17 @@ public:
     // rearrange all negative elements on left and positive on right
     void reArrange();
 
-    // merge 2 arrays
+    // merge 2 sorted arrays
     Array *merge(Array arr2);
+
+    // union of 2 sorted arrays
+    Array *unionOfArrays(Array arr2);
+
+    // intersection of 2 sorted arrays
+    Array *intersection(Array arr2);
+
+    // tells the elements of first array which is not in second
+    Array *difference(Array arr2);
 };
 
 // time complexity is O(1)
@@ -323,7 +332,8 @@ void Array ::reArrange()
     }
 }
 
-Array* Array ::merge(Array arr2)
+// time complexity is O(m + n) or simply O(n)
+Array *Array ::merge(Array arr2)
 {
     int i = 0, j = 0, k = 0;
     Array *arr3 = new Array(length + arr2.length);
@@ -347,6 +357,102 @@ Array* Array ::merge(Array arr2)
         arr3->A[k++] = arr2.A[j++];
     }
 
+    arr3->length = k;
+
+    return arr3;
+}
+
+// time complexity is O(m + n) or simply O(n)
+Array *Array ::unionOfArrays(Array arr2)
+{
+    int i = 0, j = 0, k = 0;
+    Array *arr3 = new Array(length + arr2.length);
+    while (i < length && j < arr2.length)
+    {
+        if (A[i] < arr2.A[j])
+        {
+            arr3->A[k++] = A[i++];
+        }
+        else if (A[i] > arr2.A[j])
+        {
+            arr3->A[k++] = arr2.A[j++];
+        }
+        else
+        {
+            arr3->A[k++] = A[i++];
+            j++;
+        }
+    }
+    while (i < length)
+    {
+        arr3->A[k++] = A[i++];
+    }
+    while (j < arr2.length)
+    {
+        arr3->A[k++] = arr2.A[j++];
+    }
+
+    arr3->length = k;
+
+    return arr3;
+}
+
+// time complexity is O(m + n) or simply O(n)
+Array *Array ::intersection(Array arr2)
+{
+    int i = 0, j = 0, k = 0;
+    Array *arr3 = new Array(length + arr2.length);
+
+    while (i < length && j < arr2.length)
+    {
+        if (A[i] < arr2.A[j])
+        {
+            i++;
+        }
+        else if (A[i] > arr2.A[j])
+        {
+            j++;
+        }
+        else
+        {
+            arr3->A[k++] = A[i];
+            i++;
+            j++;
+        }
+    }
+
+    arr3->length = k;
+    return arr3;
+}
+
+// time complexity is O(m + n) or simply O(n)
+Array *Array ::difference(Array arr2)
+{
+    int i = 0, j = 0, k = 0;
+    Array *arr3 = new Array(length + arr2.length);
+
+    while (i < length && j < arr2.length)
+    {
+        if (A[i] < arr2.A[j])
+        {
+            arr3->A[k++] = A[i++];
+        }
+        else if (A[i] > arr2.A[j])
+        {
+            j++;
+        }
+        else
+        {
+            i++;
+            j++;
+        }
+    }
+
+    while (i < length) {
+        arr3->A[k++] = A[i++];
+    }
+
+    arr3->length = k;
     return arr3;
 }
 
@@ -401,10 +507,8 @@ int main()
         arr2.add(a);
     }
 
-    Array* a3 = arr.merge(arr2);
-    for(int i = 0; i < l; i++) {
-        cout << a3->A[i] << " ";
-    }
+    Array *a3 = arr.difference(arr2);
+    a3->display();
 
     return 0;
 }
