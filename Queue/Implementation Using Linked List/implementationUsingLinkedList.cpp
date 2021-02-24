@@ -30,6 +30,11 @@ public:
     {
         node *n = new node(x);
 
+        if (n == NULL) {
+            cout << "No space in heap!" << endl;
+            return;
+        }
+
         if (front == NULL)
         {
             front = n;
