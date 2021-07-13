@@ -1,23 +1,19 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-int tilingWays(int n) {
-
-    if (n == 1) {
+// tiling problem
+int tiling(int n)
+{
+    if (n == 1)
         return 1;
-    }
-
-    if (n == 0) {
-        return 0;
-    }
-
-    return tilingWays(n - 1) + tilingWays(n - 2);   
-
+    if (n == 2)
+        return 2;
+        
+    return tiling(n - 1) + tiling(n - 2);
 }
 
-int main() {
-
-    cout << tilingWays(4);
+int main()
+{
+    cout << tiling(3);
     return 0;
-
 }

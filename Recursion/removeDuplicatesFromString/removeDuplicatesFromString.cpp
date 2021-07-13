@@ -1,40 +1,45 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-// By myself
-// void removeDuplicates(string s) {
-//     if(s.length() == 0) {
-//         return;
-//     }
-//     int i = 0;
-//     while (s[i+1] == s[i]) {
-//         i++;
-//     }
-//     cout << s[i];
-//     removeDuplicates(s.substr(i+1));
-// }
+// remove duplicate only consecutively
+string removeDupli(string s)
+{
 
-string removeDupli(string s) {
-
-    if (s.length() == 0) {
+    if (s.length() == 0)
+    {
         return "";
     }
 
     char ch = s[0];
-    string ans = removeDupli(s.substr(1)); 
+    string ans = removeDupli(s.substr(1));
 
-    if (ans[0] == ch) {
+    if (ans[0] == ch)
+    {
         return ans;
     }
 
     return ch + ans;
- 
 }
 
-int main() {
+string removeDuplicates(string s, int n, int i = 0, string ans = "")
+{
+    if (i == n)
+        return ans;
+    if (s[i] == s[i + 1])
+    {
+        return removeDuplicates(s, n, i + 1, ans);
+    }
+    else
+    {
+        return removeDuplicates(s, n, i + 1, ans + s[i]);
+    }
+}
+
+int main()
+{
 
     // removeDuplicates("abaagsjaaababbbb");
-    cout << removeDupli("aaaabbbbbcddddeeffff") << endl;
+    cout << removeDupli("aaaabbbbbcddddeeffffaaaa") << endl;
 
     return 0;
 }

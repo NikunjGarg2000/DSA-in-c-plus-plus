@@ -21,6 +21,23 @@ void replacePi(string s)
     }
 }
 
+// or this
+string replace(string s, int n, int i = 0, string ans = "")
+{
+    if (i >= n)
+        return ans;
+    if (s.substr(i, 2) == "pi")
+    {
+        ans = ans + "3.14";
+        return replace(s, n, i + 2, ans);
+    }
+    else
+    {
+        ans = ans + s[i];
+        return replace(s, n, i + 1, ans);
+    }
+}
+
 int main()
 {
 

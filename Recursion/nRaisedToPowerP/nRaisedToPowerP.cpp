@@ -1,22 +1,52 @@
-#include<iostream>
+// a ^ b
+#include <iostream>
 using namespace std;
 
-int power(int n, int p) {
-
-    if (p == 0) {
-        return 1;
-    }
-
-    int prevPower = power(n, p-1);
-    return n * prevPower;
+// TC - O(n)
+int power(int a, int b) {
+    if (b == 0) return 1;
+    return a * power(a, b-1);
 }
 
-int main() {
+// TC - O(n)
+int tailPower(int a, int b, int ans = 1) {
+    if (b == 0) return ans;
+    return tailPower(a, b-1, ans * a);
+}
 
-    int n, p;
-    cin >> n >> p;
+// TC - O(log n)
+int optimizedPower(int a, int b) {
+    int ans = 1;
+    while (b > 0) {
+        if (b & 1) {
+            ans = ans * a;
+            b = b - 1;
+        } else {
+            a = a*a;
+            b = b/2;
+        }
+    }
+    return ans;
+}
 
-    cout << power(n, p) << endl;
+// TC - O(log n)
+int optimizedPowerUsingRecursion(int a, int b) {
+    if (b == 0) return 1;
+    if (b % 2 == 0) {
+        return optimizedPowerUsingRecursion(a*a, b/2);
+    }
+    return a * optimizedPowerUsingRecursion(a*a, (b-1)/2);
+}
+
+int main()
+{
+    int a, b;
+    cin >> a >> b;
+    
+    cout << power(a, b) << endl;
+    cout << tailPower(a, b) << endl;
+    cout << optimizedPower(a, b) << endl;
+    cout << optimizedPowerUsingRecursion(a, b) << endl;
 
     return 0;
 }
