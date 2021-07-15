@@ -43,29 +43,21 @@ void insertAtTail(node *&head, int val)
     temp->next = n;
 }
 
-void evenAfterOdd(node *&head)
+void evenAfterOdd(node *head)
 {
-    node *odd = head;
-    node *even = head->next;
-    node *evenStart = head->next;
-
-    while (even->next != NULL && odd->next != NULL)
-    {
-        odd->next = even->next;
-        odd = odd->next;
-
-        // checking this if there are odd no. of nodes then odd->next would be NULL
-        if (odd->next != NULL)
-        {
-            even->next = odd->next;
-            even = even->next;
-        }
+    node* oddPtr = head;
+    node* evenPtr = head -> next;
+    node* temp = head -> next;
+    while (oddPtr -> next != NULL && evenPtr -> next != NULL) {
+        oddPtr -> next = oddPtr -> next -> next;
+        evenPtr -> next = evenPtr -> next -> next;
+        oddPtr = oddPtr -> next;
+        evenPtr = evenPtr -> next;
     }
-
-    odd->next = evenStart;
-
-    // if there are even then even->next would automatically be NULL though we are doing this for odd no. of nodes
-    even->next = NULL;
+    oddPtr->next = temp;
+    if (evenPtr != NULL) {
+        evenPtr->next = NULL;
+    }
 }
 
 void display(node *head)
@@ -86,7 +78,7 @@ int main()
 
     node *head = NULL;
 
-    int arr[] = {1, 2, 3, 4, 5, 6, 7};
+    int arr[] = {1, 2, 3, 4};
     for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++)
     {
         insertAtTail(head, arr[i]);

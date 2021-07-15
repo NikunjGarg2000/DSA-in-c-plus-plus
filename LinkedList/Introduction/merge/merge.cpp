@@ -72,6 +72,7 @@ node* mergeRecursive(node* &head1, node* &head2) {
     return result;
 }
 
+// TC - O(n)
 // iterative method to merge 2 linked list
 node* merge(node* &head1, node* &head2) {
     node* ptr1 = head1;
