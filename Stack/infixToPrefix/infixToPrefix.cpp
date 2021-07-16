@@ -1,21 +1,26 @@
 #include <iostream>
 #include <stack>
+#include<algorithm>
+#include <vector>
 using namespace std;
 
 // reversing the string then changing opening and closing brackets
-void reverse(string &s)
+vector<char> reverse(string s)
 {
-    string rev = "";
-    int i, j;
-    for (i = s.length() - 1, j = 0; i >= 0; i--, j++)
-    {
-        rev[j] = s[i];
-        if (rev[j] == '(')
-            rev[j] = ')';
-        if (rev[j] == ')')
-            rev[j] = '(';
+    vector<char> rev;
+    int n = s.length();
+    for (int i = n - 1; i >= 0; i++) {
+        if (s[i] == '(') {
+            rev.push_back(')');
+            continue;
+        } 
+        if (s[i] == ')') {
+            rev.push_back('(');
+            continue;
+        }
+        rev.push_back(s[i]);
     }
-    s = rev;
+    return rev;
 }
 
 int precedence(char c)
@@ -30,13 +35,13 @@ int precedence(char c)
         return -1;
 }
 
-string infixToPrefix(string s)
+vector<char> infixToPrefix(string oldS)
 {
     stack<char> st;
     string result = "";
-    reverse(s);
+    vector<char> s = reverse(oldS);
 
-    for (int i = 0; i < s.length(); i++)
+    for (int i = 0; i < s.size(); i++)
     {
         if ((s[i] >= 'a' && s[i] <= 'z') || (s[i] >= 'A' && s[i] <= 'Z'))
         {
@@ -53,11 +58,13 @@ string infixToPrefix(string s)
                 result += st.top();
                 st.pop();
             }
-            st.pop();
+            if (!st.empty()) {
+                st.pop();
+            }
         }
         else
         {
-            while (!st.empty() && precedence(st.top()) > precedence(s[i])) {
+            while (!st.empty() && precedence(st.top()) >= precedence(s[i])) {
                 result += st.top();
                 st.pop();
             }
@@ -69,16 +76,16 @@ string infixToPrefix(string s)
         result += st.top();
         st.pop();
     }
-
-    reverse(result);
-    return result;
+    vector<char> res = reverse(result);
+    return res;
 }
 
 int main()
 {
     string s = "(a-b/c)*(a/k-l)";
-    reverse(s);
-    cout << s;
-    cout << infixToPrefix(s);
+    vector<char> res = infixToPrefix(s);
+    for (int i = 0; i < res.size(); i++) {
+        cout << res[i];
+    }
     return 0;
 }

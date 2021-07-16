@@ -18,28 +18,29 @@ int postfixEvaluation(string s)
         else
         // s[i] is operator
         {
-            int A = st.top();
-            st.pop();
+            // analyze since starting from start like 25* so 2 will be at bottom so 5 will be B and 2 will be A
             int B = st.top();
             st.pop();
+            int A = st.top();
+            st.pop();
 
-            // here we do B operator A
+            // push A operator B
             switch (s[i])
             {
             case '+':
-                st.push(B + A);
+                st.push(A + B);
                 break;
             case '-':
-                st.push(B - A);
+                st.push(A - B);
                 break;
             case '*':
-                st.push(B * A);
+                st.push(A * B);
                 break;
             case '/':
-                st.push(B / A);
+                st.push(A / B);
                 break;
             case '^':
-                st.push(pow(B, A));
+                st.push(pow(A, B));
                 break;
 
             default:

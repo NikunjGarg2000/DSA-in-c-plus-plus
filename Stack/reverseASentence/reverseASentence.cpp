@@ -1,32 +1,45 @@
-#include<iostream>
-#include<stack>
+#include <iostream>
+#include <stack>
 using namespace std;
 
-void reverseSentence(string str) {
-    // using LIFO property of stack, we will solve this
-
-    stack<string> s;
+// Ques: reverse a sentence. Also trim start and end spaces. Also if there are 2 or more spaces in between make that 1 space.
+// eg. " hey,  how are you?  " 
+// your result should look like: "you? are how hey,"
+string reverseSentence(string s)
+{
+    stack<string> ans;
     int i = 0;
-    while (i < str.length()) {
-        string word = "";
-        while (str[i] != ' ' && i < str.length()) {
-            word += str[i];
+    string temp = "";
+    while (i < s.size())
+    {
+        temp = "";
+        while (s[i] != ' ' && i < s.size())
+        {
+            temp += s[i];
             i++;
         }
-        // this to neglect space otherwise this may go on!
         i++;
-        s.push(word);
+        // handling 2 or more spaces, that we don't have to push
+        if (temp == "")
+        {
+            continue;
+        }
+        ans.push(temp);
     }
 
-    while (!s.empty()) {
-        cout << s.top() << endl;
-        s.pop();
+    temp = "";
+    while (!ans.empty())
+    {
+        temp += (ans.top() + " ");
+        ans.pop();
     }
-    cout << endl;
+    return temp.substr(0, temp.length() - 1);
 }
 
-int main() {
+int main()
+{
     string s = "Hey, how are you doing?";
-    reverseSentence(s);
+    string result = reverseSentence(s);
+    cout << result << endl;
     return 0;
 }

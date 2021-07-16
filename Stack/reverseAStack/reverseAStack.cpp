@@ -2,6 +2,11 @@
 #include<stack>
 using namespace std;
 
+// brute force will be to take an empty stack and pop from given and push to that simply.
+// this one is efficient without using another stack(recursive way)
+
+
+// this function is using recursive call stack simply
 void insertAtBottom(stack<int> &s, int element) {
     if (s.empty()) {
         s.push(element);
@@ -19,6 +24,8 @@ void reverseAStack (stack<int> &s) {
         return;
     }
 
+    // assume we got reversed stack except top element.
+    // so just pick top and insert at bottom
     int topElement = s.top();
     s.pop();
     reverseAStack(s);

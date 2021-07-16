@@ -23,7 +23,7 @@ int prefixEvaluation(string s)
             int B = st.top();
             st.pop();
 
-            // here we do A operator B
+            // push A operator B
             switch (s[i])
             {
             case '+':
